@@ -5,11 +5,10 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', { noremap = true})
 vim.keymap.set('n', 'q', ':q!<CR>', { desc = "To exit from plugins using :q" })
-
-
+vim.keymap.set('n', '<leader>lg', ':!wezterm cli spawn -- lazygit<CR>', {desc = "Spawn Lazygit"})
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
