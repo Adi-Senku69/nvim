@@ -26,6 +26,7 @@ vim.keymap.set('i', '<C-p>', '<C-p>', { noremap = true })
 
 -- Optional: Cancel the menu with <Esc>
 vim.keymap.set('i', '<Esc>', '<C-e>', { noremap = true })
+
 vim.lsp.config['luals'] = {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
@@ -51,6 +52,27 @@ vim.lsp.config['pylsp'] = {
     },
 
 }
+vim.lsp.config["ts-ls"] = {
+    default_config = {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = { "javascript", "typescript" },
+        root_dir = { ".js", ".ts" }
+    }
+}
+vim.lsp.config["yaml-ls"] = {
+    default_config = {
+        cmd = { "yaml-language-server", "--stdio" },
+        filetypes = { "yaml", "yml" },
+        root_dir = { ".yaml", ".yml" }
+    }
+}
+vim.lsp.config["docker-compose-ls"] = {
+    default_config = {
+        cmd = { "docker-compose-langserver", "--stdio" },
+        filetypes = { "yaml" },
+        root_dir = { ".yaml", ".yml" },
+    }
+}
 vim.lsp.config["dockerls"] = {
     default_config = {
         cmd = { "docker-langserver", "--stdio" },
@@ -59,10 +81,12 @@ vim.lsp.config["dockerls"] = {
         single_file_support = true,
     }
 }
-
+vim.lsp.enable("ts-ls")
+vim.lsp.enable("yaml-ls")
 vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
 vim.lsp.enable("dockerls")
+vim.lsp.enable("docker-compse-ls")
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -88,6 +112,8 @@ require("lazy").setup("plugins",
         -- automatically check for plugin updates
         checker = { enabled = true },
     })
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local opts = { buffer = args.buf }
@@ -104,6 +130,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+        ---@diagnostic disable-next-line: need-check-nil
         if client:supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
                 buffer = args.buf,
@@ -211,3 +238,38 @@ vim.keymap.set('n', '<leader>n', ':BufferLineCycleNext<CR>', { noremap = true, s
 -- Move to the previous buffer (tab)
 vim.keymap.set('n', '<leader>pp', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-w>', ':bd<CR>', { noremap = true, silent = true })
+-- local harpoon = require("harpoon")
+--
+-- vim.keymap.set("n", "<leader>a", function()
+--     harpoon:list():add()
+-- end, { desc = "Add file to Harpoon" })
+--
+-- vim.keymap.set("n", "<leader>h", function()
+--     harpoon.ui:toggle_quick_menu(harpoon:list())
+-- end, { desc = "Toggle Harpoon menu" })
+--
+-- vim.keymap.set("n", "<leader>j", function()
+--     harpoon:list():select(1)
+-- end, { desc = "Go to Harpoon file 1" })
+--
+-- vim.keymap.set("n", "<leader>k", function()
+--     harpoon:list():select(2)
+-- end, { desc = "Go to Harpoon file 2" })
+--
+-- vim.keymap.set("n", "<leader>l", function()
+--     harpoon:list():select(3)
+-- end, { desc = "Go to Harpoon file 3" })
+--
+-- vim.keymap.set("n", "<leader>i", function()
+--     harpoon:list():select(4)
+-- end, { desc = "Go to Harpoon file 4" })
+--
+-- vim.keymap.set('n', "<S-n>", function() harpoon:list():next() end, { desc = "Move to the next file in the buffer" })
+-- vim.keymap.set('n', "<S-p>", function() harpoon:list():next() end, { desc = "Move to the previous file in the buffer" })
+-- vim.keymap.set('n', "<leader>ch", function() harpoon:list():clear() end, { desc = "Clear the harpoon list" })
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "jtrueson",
+--     callback = function()
+--         vim.keymap.set("n", "<leader>fj", ":%!jq .<CR>", { buffer = true, desc = "Format JSON with jq" })
+--     end,
+-- })

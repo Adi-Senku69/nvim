@@ -3,29 +3,32 @@ return {
     branch = "v3.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
-        -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window
     },
-    lazy = false, -- Neo-tree will lazily load itself
-    ---@module "neo-tree"
-    ---@type neotree.Config?
-    opts = {
-        filesystem = {
-            filtered_items = {
-                visible = true,   -- Show all files, including hidden ones
-                hide_dotfiles = false, -- Don't hide dotfiles (e.g., .env, .gitignore)
-                hide_gitignored = false, -- Show gitignored files too
-            },
-            follow_current_file = true, -- Keep current file in view in the tree
-        },
-        window = {
-            position = "left", -- Neo-tree appears on the left by default (can be adjusted)
-            width = 30,  -- You can adjust the width of the Neo-tree window
-        },
-    },
+    lazy = false,
     config = function()
-        -- Keybinding to reveal Neo-tree on the right
+        require("neo-tree").setup({
+            filesystem = {
+                filtered_items = {
+                    visible = true,         -- Show hidden files
+                    hide_dotfiles = false,  -- Do not hide dotfiles
+                    hide_gitignored = false -- Optional: show gitignored files
+                },
+                follow_current_file = {
+                    enabled = true
+                },
+            },
+            window = {
+                position = "left",
+                width = 30,
+                mappings = {
+                    ["H"] = "toggle_hidden", -- Optional: toggle dotfiles with 'H'
+                },
+            },
+        })
+
+        -- Keybinding to open Neo-tree on the right
         vim.keymap.set('n', '<C-f>', ':Neotree filesystem reveal right<CR>', { desc = 'Reveal filesystem on the right' })
 
         -- Auto-close Neo-tree after opening a file
