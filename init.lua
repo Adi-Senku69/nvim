@@ -51,9 +51,18 @@ vim.lsp.config['pylsp'] = {
     },
 
 }
+vim.lsp.config["dockerls"] = {
+    default_config = {
+        cmd = { "docker-langserver", "--stdio" },
+        filetypes = { "Dockerfile" },
+        root_dir = { "Dockerfile", ".dit" },
+        single_file_support = true,
+    }
+}
 
 vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
+vim.lsp.enable("dockerls")
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -197,7 +206,8 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 -- Move to the next buffer (tab)
-vim.keymap.set('n', '<Leader>bn', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>n', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
 -- Move to the previous buffer (tab)
-vim.keymap.set('n', '<Leader>bp', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>pp', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>', ':bd<CR>', { noremap = true, silent = true })
