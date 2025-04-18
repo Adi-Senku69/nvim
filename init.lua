@@ -88,4 +88,3 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
--- Move to the next buffer (tab)
