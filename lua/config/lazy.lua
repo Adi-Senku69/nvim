@@ -36,6 +36,79 @@ require("lazy").setup({
         opts.section.header.opts.position = "center"
       end,
     },
+    {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      keys = function()
+        -- This overrides LazyVim’s default keymaps
+        return {
+          -- Your custom mappings go here
+          {
+            "<leader>a",
+            function()
+              require("harpoon"):list():add()
+            end,
+            desc = "Add file to Harpoon",
+          },
+          {
+            "<leader>h",
+            function()
+              require("harpoon.ui"):toggle_quick_menu(require("harpoon"):list())
+            end,
+            desc = "Toggle Harpoon menu",
+          },
+          {
+            "<leader>j",
+            function()
+              require("harpoon"):list():select(1)
+            end,
+            desc = "Go to Harpoon file 1",
+          },
+          {
+            "<leader>k",
+            function()
+              require("harpoon"):list():select(2)
+            end,
+            desc = "Go to Harpoon file 2",
+          },
+          {
+            "<leader>l",
+            function()
+              require("harpoon"):list():select(3)
+            end,
+            desc = "Go to Harpoon file 3",
+          },
+          {
+            "<leader>i",
+            function()
+              require("harpoon"):list():select(4)
+            end,
+            desc = "Go to Harpoon file 4",
+          },
+          {
+            "<S-n>",
+            function()
+              require("harpoon"):list():next()
+            end,
+            desc = "Move to next Harpoon file",
+          },
+          {
+            "<S-p>",
+            function()
+              require("harpoon"):list():prev()
+            end,
+            desc = "Move to previous Harpoon file",
+          },
+          {
+            "<leader>ch",
+            function()
+              require("harpoon"):list():clear()
+            end,
+            desc = "Clear Harpoon list",
+          },
+        }
+      end,
+    },
   },
   defaults = {
     lazy = false,

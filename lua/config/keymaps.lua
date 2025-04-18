@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 vim.keymap.set("n", "qq", ":q!<CR>", { desc = "To exit from plugins using :q", noremap = true })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Move window", noremap = true })
+vim.keymap.set("n", "<leader>ii", ":!viu %<CR>", { desc = "Display Image" })
 vim.keymap.set("n", "<leader>lg", ":!wezterm cli spawn -- lazygit<CR>", { desc = "Spawn Lazygit" })
 vim.keymap.set("v", "<leader>c", '"+y', { desc = "Copy file to + register", noremap = true })
 vim.keymap.set("v", "<leader>x", '"+d', { desc = "Cut file to + register" })
@@ -33,19 +34,19 @@ end, { desc = "Toggle Harpoon menu" })
 
 vim.keymap.set("n", "<leader>j", function()
   harpoon:list():select(1)
-end, { desc = "Go to Harpoon file 1" })
+end, { desc = "Go to Harpoon file 1", noremap = true })
 
 vim.keymap.set("n", "<leader>k", function()
   harpoon:list():select(2)
-end, { desc = "Go to Harpoon file 2" })
+end, { desc = "Go to Harpoon file 2", noremap = true })
 
 vim.keymap.set("n", "<leader>l", function()
   harpoon:list():select(3)
-end, { desc = "Go to Harpoon file 3" })
+end, { desc = "Go to Harpoon file 3", noremap = true })
 
 vim.keymap.set("n", "<leader>i", function()
   harpoon:list():select(4)
-end, { desc = "Go to Harpoon file 4" })
+end, { desc = "Go to Harpoon file 4", noremap = true })
 
 vim.keymap.set("n", "<S-n>", function()
   harpoon:list():next()
