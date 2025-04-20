@@ -10,7 +10,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
---vim.keymap.set('n', 'q', '@q', {desc = "Record Macros", noremap=true})
 vim.lsp.config["luals"] = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -34,34 +33,36 @@ vim.lsp.config["pylsp"] = {
     },
   },
 }
+vim.lsp.config["cssls"] = {
+  cmd = { "vscode-css-language-server", "--stdio" },
+  filetypes = { "css" },
+  root_markers = { ".git", "package.json" },
+}
+vim.lsp.config["html_ls"] = {
+  cmd = { "vscode-html-language-server", "--stdio" },
+  filetypes = { "html" },
+  root_markers = { ".html" },
+}
 vim.lsp.config["ts-ls"] = {
-  default_config = {
-    cmd = { "typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "typescript" },
-    root_dir = { ".js", ".ts" },
-  },
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = { "javascript", "typescript" },
+  root_markers = { ".js", ".ts" },
 }
 vim.lsp.config["yaml-ls"] = {
-  default_config = {
-    cmd = { "yaml-language-server", "--stdio" },
-    filetypes = { "yaml", "yml" },
-    root_dir = { ".yaml", ".yml" },
-  },
+  cmd = { "yaml-language-server", "--stdio" },
+  filetypes = { "yaml", "yml" },
+  root_markers = { ".yaml", ".yml" },
 }
-vim.lsp.config["docker-compose-ls"] = {
-  default_config = {
-    cmd = { "docker-compose-langserver", "--stdio" },
-    filetypes = { "yaml" },
-    root_dir = { ".yaml", ".yml" },
-  },
+
+vim.lsp.config["docker-compse-ls"] = {
+  cmd = { "docker-compose-langserver", "--stdio" },
+  filetypes = { "yaml", "yml" },
+  root_markers = { ".yaml", ".yml" },
 }
 vim.lsp.config["dockerls"] = {
-  default_config = {
-    cmd = { "docker-langserver", "--stdio" },
-    filetypes = { "Dockerfile" },
-    root_dir = { "Dockerfile", ".dit" },
-    single_file_support = true,
-  },
+  cmd = { "docker-langserver", "--stdio" },
+  filetypes = { "Dockerfile" },
+  root_markers = { "Dockerfile", ".dit" },
 }
 vim.lsp.enable("ts-ls")
 vim.lsp.enable("yaml-ls")
@@ -69,6 +70,8 @@ vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
 vim.lsp.enable("dockerls")
 vim.lsp.enable("docker-compse-ls")
+vim.lsp.enable("cssls")
+vim.lsp.enable("html_ls")
 -- Bootstrap lazy.nvim
 
 require("config.lazy")
