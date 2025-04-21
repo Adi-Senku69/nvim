@@ -29,6 +29,12 @@ vim.lsp.config["pylsp"] = {
         rope_autoimport = {
           enabled = true,
         },
+        Jedi = {
+          enable = true,
+          completion = {
+            brackets = true, -- Enable auto-bracket completions
+          }
+        },
       },
     },
   },
@@ -91,3 +97,4 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
+vim.lsp.handlers["textDocument/signatureHelp"] = function() end

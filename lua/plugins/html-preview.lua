@@ -1,23 +1,24 @@
-local socket = require("socket")
-
-local function is_port_in_use(port)
-  local tcp = socket.tcp()
-  local success, _ = tcp:bind("127.0.0.1", port)
-  tcp:close()
-  return not success
-end
-
-local function find_available_port(start_port)
-  local port = start_port
-  while is_port_in_use(port) do
-    port = port + 1
-  end
-  return port
-end
-
-local base_port = 5500
-local available_port = find_available_port(base_port)
-
+-- local socket = require("socket")
+--
+-- local function is_port_in_use(port)
+--   local tcp = socket.tcp()
+--   local success, _ = tcp:bind("127.0.0.1", port)
+--   tcp:close()
+--   return not success
+-- end
+--
+-- local function find_available_port(start_port)
+--   local port = start_port
+--   while is_port_in_use(port) do
+--     port = port + 1
+--   end
+--   return port
+-- end
+--
+-- local base_port = 5500
+-- local available_port = find_available_port(base_port)
+--
+local available_port = 5500
 return {
   "brianhuster/live-preview.nvim",
   dependencies = {

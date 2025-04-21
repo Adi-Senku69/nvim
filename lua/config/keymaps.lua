@@ -3,6 +3,7 @@
 vim.keymap.set("n", "qq", ":q!<CR>", { desc = "To exit from plugins using :q", noremap = true })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Move window", noremap = true })
 vim.keymap.set("n", "<leader>ii", ":!viu %<CR>", { desc = "Display Image" })
+vim.keymap.set("n", "<leader>jf", ":%!jq .", { desc = "Format the json file" })
 vim.keymap.set("n", "<leader>lp", ":LivePreview start<CR>", { desc = "Live preview of html" })
 vim.keymap.set("n", "<leader>lc", ":LivePreview close<CR>", { desc = "Close the Live preview of html" })
 vim.keymap.set("n", "<leader>lg", ":!wezterm cli spawn -- lazygit<CR>", { desc = "Spawn Lazygit" })
@@ -102,3 +103,46 @@ vim.keymap.set("i", "<Tab>", tab_complete, { expr = true })
 vim.keymap.set("i", "<S-Tab>", tab_prev, { expr = true })
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-e>", "<C-w>d", {})
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert' }
+vim.opt.shortmess:append('c')
+
+local function tab_complete()
+  if vim.fn.pumvisible() == 1 then
+    -- navigate to next item in completion menu
+    return '<Down>'
+  end
+
+  local c = vim.fn.col('.') - 1
+  local is_whitespace = c == 0 or vim.fn.getline('.'):sub(c, c):match('%s')
+
+  if is_whitespace then
+    -- insert tab
+    return '<Tab>'
+  end
+
+  local lsp_completion = vim.bo.omnifunc == 'v:lua.vim.lsp.omnifunc'
+
+  if lsp_completion then
+    -- trigger lsp code completion
+    return '<C-x><C-o>'
+  end
+
+  -- suggest words in current buffer
+  return '<C-x><C-n>'
+end
+
+local function tab_prev()
+  if vim.fn.pumvisible() == 1 then
+    -- navigate to previous item in completion menu
+    return '<Up>'
+  end
+
+  -- insert tab
+  return '<Tab>'
+end
+
+vim.keymap.set('i', '<Tab>', tab_complete, { expr = true })
+vim.keymap.set('i', '<S-Tab>', tab_prev, { expr = true })
+vim.keymap.set('n', '<leader>tt', function()
+  vim.cmd("vsplit | terminal")
+end, { noremap = true, desc = "Open terminal in vsplit" })
