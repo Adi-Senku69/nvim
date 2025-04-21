@@ -25,9 +25,13 @@ vim.lsp.config["pylsp"] = {
       plugins = {
         flake8 = {
           enabled = true,
+          ignore = { "W293" }
         },
         rope_autoimport = {
           enabled = true,
+        },
+        pycodestyle = {
+          enabled = false,
         },
         Jedi = {
           enable = true,

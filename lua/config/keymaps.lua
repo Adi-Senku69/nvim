@@ -143,6 +143,4 @@ end
 
 vim.keymap.set('i', '<Tab>', tab_complete, { expr = true })
 vim.keymap.set('i', '<S-Tab>', tab_prev, { expr = true })
-vim.keymap.set('n', '<leader>tt', function()
-  vim.cmd("vsplit | terminal")
-end, { noremap = true, desc = "Open terminal in vsplit" })
+vim.keymap.set('n', '<leader>t', '<cmd>ToggleTerm<cr>', { desc = "Toggle vertical terminal" })
