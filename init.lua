@@ -25,7 +25,7 @@ vim.lsp.config["pylsp"] = {
       plugins = {
         flake8 = {
           enabled = true,
-          ignore = { "W293" }
+          ignore = { "W293" },
         },
         rope_autoimport = {
           enabled = true,
@@ -37,7 +37,7 @@ vim.lsp.config["pylsp"] = {
           enable = true,
           completion = {
             brackets = true, -- Enable auto-bracket completions
-          }
+          },
         },
       },
     },
@@ -102,3 +102,9 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 vim.lsp.handlers["textDocument/signatureHelp"] = function() end
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float", close_on_exit = true })
+vim.keymap.set("n", "<leader>lg", function()
+  lazygit:toggle()
+end, { desc = "Toggle Lazygit", noremap = true })

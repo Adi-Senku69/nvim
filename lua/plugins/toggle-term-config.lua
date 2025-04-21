@@ -4,7 +4,8 @@ return {
   version = "*",
   config = function()
     require("toggleterm").setup({
-      direction = "float",
+      direction = "vertical",
+      size = 60,
     })
-  end
+  end,
 }
