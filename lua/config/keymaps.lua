@@ -146,3 +146,4 @@ vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<cr>", { desc = "Toggle vertica
 vim.keymap.set("i", "<Tab>", tab_complete, { expr = true })
 vim.keymap.set("i", "<S-Tab>", tab_prev, { expr = true })
 vim.keymap.set("t", "xx", "<cmd>ToggleTerm<cr>", { desc = "Close Terminal" })
+vim.keymap.set("n", "<leader>/", "<cmd>nohlsearch<cr>", { desc = "Remove the search highlight" })
