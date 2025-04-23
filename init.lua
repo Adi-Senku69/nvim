@@ -27,19 +27,19 @@ vim.lsp.config["pylsp"] = {
         --       enabled = true,
         --       ignore = { "W293" },
         --     },
-        --     rope_autoimport = {
-        --       enabled = true,
-        --     },
-        --     pycodestyle = {
+        rope_autoimport = {
+          enabled = true,
+        },
+        -- pycodestyle = {
         --       enabled = false,
         --     },
-        --     Jedi = {
-        --       enable = true,
-        --       completion = {
-        --         brackets = true, -- Enable auto-bracket completions
-        --       },
-        --     },
-        --   },
+        Jedi = {
+          enable = true,
+          completion = {
+            brackets = true, -- Enable auto-bracket completions
+          },
+        },
+        -- },
         -- },
         ruff = {
           enabled = true,                  -- Enable the plugin
