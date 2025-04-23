@@ -3,7 +3,7 @@
 vim.keymap.set("n", "qq", ":q!<CR>", { desc = "To exit from plugins using :q", noremap = true })
 vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Move window", noremap = true })
 vim.keymap.set("n", "<leader>ii", ":!viu %<CR>", { desc = "Display Image" })
-vim.keymap.set("n", "<leader>jf", ":%!jq .", { desc = "Format the json file" })
+vim.keymap.set("n", "<leader>jf", ":%!jq .<cr>", { desc = "Format the json file" })
 vim.keymap.set("n", "<leader>lp", ":LivePreview start<CR>", { desc = "Live preview of html" })
 vim.keymap.set("n", "<leader>lc", ":LivePreview close<CR>", { desc = "Close the Live preview of html" })
 vim.keymap.set("v", "<leader>c", '"+y', { desc = "Copy file to + register", noremap = true })
