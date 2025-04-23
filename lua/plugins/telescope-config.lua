@@ -28,14 +28,41 @@ return {
     config = function()
       -- This is your opts table
       require("telescope").setup {
+        defaults = {
+          -- Applies to all pickers (like live_grep, find_files, etc.)
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--no-ignore',
+            '--glob', '!.git/*',
+            '--glob', '!node_modules/*',
+            '--glob', '!*.log',
+            '--glob', '!*.lock',
+            '--glob', '!*.venv',
+          },
+        },
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-              -- even more opts
-            }
+            require("telescope.themes").get_dropdown {}
           }
         }
       }
+
+      -- require("telescope").setup {
+      --   extensions = {
+      --     ["ui-select"] = {
+      --       require("telescope.themes").get_dropdown {
+      --         -- even more opts
+      --       }
+      --     }
+      --   }
+      -- }
       require("telescope").load_extension("ui-select")
     end
   }
