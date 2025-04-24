@@ -52,6 +52,18 @@ return {
           }
         })
       end, { desc = 'Telescope find files' })
+      vim.keymap.set('n', '<leader><leader>', function()
+        builtin.find_files({
+          hidden = false,
+          no_ignore = true,
+          find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--glob", "!**/.git/*"
+          }
+        })
+      end, { noremap = true, desc = 'Telescope find files' })
 
       vim.keymap.set('n', '<leader>ag', function()
         builtin.live_grep()
