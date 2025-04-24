@@ -3,7 +3,7 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("telescope").setup {
+      require("telescope").setup({
         defaults = {
           vimgrep_arguments = {
             'rg',
@@ -35,14 +35,21 @@ return {
               require("telescope.themes").get_dropdown {}
             }
           },
-        } }
+        }
+      })
 
       local builtin = require('telescope.builtin')
 
       vim.keymap.set('n', '<leader>f', function()
         builtin.find_files({
-          hidden = true,
+          hidden = false,
           no_ignore = true,
+          find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--glob", "!**/.git/*"
+          }
         })
       end, { desc = 'Telescope find files' })
 
