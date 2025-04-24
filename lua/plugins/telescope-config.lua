@@ -1,35 +1,10 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
-      vim.keymap.set('n', '<leader>ag', builtin.live_grep, { desc = 'Telescope live grep' })
-    end,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
-        ensure_installed = { "c", "lua", "vim", "javascript", "html", "python", "css", "json5" },
-        sync_install = false,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end,
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      -- This is your opts table
       require("telescope").setup {
         defaults = {
-          -- Applies to all pickers (like live_grep, find_files, etc.)
           vimgrep_arguments = {
             'rg',
             '--color=never',
@@ -46,24 +21,56 @@ return {
             '--glob', '!*.lock',
             '--glob', '!*.venv',
           },
-        },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown {}
-          }
-        }
-      }
+          file_ignore_patterns = {
+            "^.git/",
+            "^node_modules/",
+            "^.venv/",
+            "%.lock$",
+            "__pycache__/",
+            "%.ropeproject/",
+            "%.log$",
+          },
+          extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown {}
+            }
+          },
+        } }
 
-      -- require("telescope").setup {
-      --   extensions = {
-      --     ["ui-select"] = {
-      --       require("telescope.themes").get_dropdown {
-      --         -- even more opts
-      --       }
-      --     }
-      --   }
-      -- }
+      local builtin = require('telescope.builtin')
+
+      vim.keymap.set('n', '<leader>f', function()
+        builtin.find_files({
+          hidden = true,
+          no_ignore = true,
+        })
+      end, { desc = 'Telescope find files' })
+
+      vim.keymap.set('n', '<leader>ag', function()
+        builtin.live_grep()
+      end, { desc = 'Telescope live grep' })
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = { "c", "lua", "vim", "javascript", "html", "python", "css", "json5" },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
+  },
+
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    config = function()
+      -- No need to call telescope.setup here again, just load the extension
       require("telescope").load_extension("ui-select")
-    end
+    end,
   }
 }
