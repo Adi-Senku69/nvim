@@ -119,6 +119,20 @@ vim.lsp.config["yaml-ls"] = {
   root_markers = { ".yaml", ".yml" },
 }
 
+vim.lsp.config["elixirls"] = {
+  cmd = { "elixir-ls" },
+  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local matches = vim.fs.find({ 'mix.exs' }, { upward = true, limit = 2, path = fname })
+    local child_or_root_path, maybe_umbrella_path = table.unpack(matches)
+    local root_dir = vim.fs.dirname(maybe_umbrella_path or child_or_root_path)
+
+    on_dir(root_dir)
+  end,
+
+}
+
 vim.lsp.config["docker-compse-ls"] = {
   cmd = { "docker-compose-langserver", "--stdio" },
   filetypes = { "yaml", "yml" },
@@ -130,6 +144,7 @@ vim.lsp.config["dockerls"] = {
   root_markers = { "Dockerfile", ".dit" },
 }
 vim.lsp.enable("ts-ls")
+vim.lsp.enable("elixirls")
 vim.lsp.enable("yaml-ls")
 vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
