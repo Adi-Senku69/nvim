@@ -11,6 +11,7 @@ vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
 vim.lsp.enable("ts-ls")
 vim.lsp.enable("elixirls")
 vim.lsp.enable("yaml-ls")

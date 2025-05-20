@@ -14,12 +14,11 @@ return {
             '--column',
             '--smart-case',
             '--hidden',
-            '--no-ignore',
-            '--glob', '!.git/*',
-            '--glob', '!node_modules/*',
-            '--glob', '!*.log',
-            '--glob', '!*.lock',
-            '--glob', '!*.venv',
+            '--glob=!.git/*',
+            '--glob=!node_modules/*',
+            '--glob=!*.log',
+            '--glob=!*.lock',
+            '--glob=!*.venv',
           },
           file_ignore_patterns = {
             "^.git/",
@@ -66,7 +65,7 @@ return {
       end, { noremap = true, desc = 'Telescope find files' })
 
       vim.keymap.set('n', '<leader>ag', function()
-        builtin.live_grep()
+        builtin.live_grep({ no_ignore = false })
       end, { desc = 'Telescope live grep' })
     end,
   },

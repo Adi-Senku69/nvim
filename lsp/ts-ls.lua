@@ -1,7 +1,7 @@
 return {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "typescript" },
-  root_markers = { ".js", ".ts" },
+  root_markers = { ".js", ".ts", ".ejs" },
   settings = {
     typescript = {
       inlayHints = {
