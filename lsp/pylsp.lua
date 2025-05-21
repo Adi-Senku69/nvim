@@ -10,7 +10,7 @@ return {
         --       ignore = { "W293" },
         --     },
         rope_autoimport = {
-          enabled = true,
+          enabled = false,
         },
         -- pycodestyle = {
         --       enabled = false,
