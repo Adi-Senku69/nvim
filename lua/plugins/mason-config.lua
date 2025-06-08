@@ -13,7 +13,8 @@ return {
         "pylsp",
         "ts_ls",
         "yamlls",
-        "docker_compose_language_service"
+        "docker_compose_language_service",
+        "clangd"
       },
       automatic_installation = true
     })
