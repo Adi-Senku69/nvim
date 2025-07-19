@@ -19,11 +19,11 @@ vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
 vim.lsp.enable("dockerls")
 vim.lsp.enable("docker-compose-ls")
-vim.lsp.enable("cssls")
+vim.lsp.enable("cssls_custom")
 vim.lsp.enable("html_ls")
 vim.lsp.enable("clangd")
+vim.lsp.enable("emmet_ls_custom")
 -- Bootstrap lazy.nvim
-
 require("config.lazy")
 
 vim.diagnostic.config({
