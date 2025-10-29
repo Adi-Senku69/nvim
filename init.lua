@@ -11,7 +11,6 @@ vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
 vim.lsp.enable("ts-ls")
 vim.lsp.enable("elixirls")
 vim.lsp.enable("yaml-ls")
@@ -23,6 +22,7 @@ vim.lsp.enable("cssls_custom")
 vim.lsp.enable("html_ls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("emmet_ls_custom")
+-- vim.lsp.enable("asm")
 -- Bootstrap lazy.nvim
 require("config.lazy")
 

@@ -16,13 +16,14 @@ return {
         "docker_compose_language_service",
         "clangd",
         "cssls",
-        "emmet_language_server"
+        "emmet_language_server",
+        "asm_lsp",
       },
-      automatic_installation = true
+      automatic_installation = true,
     })
     require("mason-null-ls").setup({
       ensure_installed = { "prettier", "ruff", "jq", "dotenv-linter" },
-      automatic_installation = true
+      automatic_installation = true,
     })
   end,
 }
