@@ -5,10 +5,10 @@ return {
   settings = {
     pylsp = {
       plugins = {
-        --     flake8 = {
-        --       enabled = true,
-        --       ignore = { "W293" },
-        --     },
+        flake8 = {
+          enabled = true,
+          ignore = { "W293" },
+        },
         rope_autoimport = {
           enabled = false,
         },
@@ -19,6 +19,9 @@ return {
           enable = true,
           completion = {
             brackets = true, -- Enable auto-bracket completions
+            fuzzy = true,
+            inclue_params = true,
+            definition = true,
           },
         },
         -- },

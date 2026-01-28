@@ -26,22 +26,22 @@ vim.lsp.enable("emmet_ls_custom")
 -- Bootstrap lazy.nvim
 require("config.lazy")
 
-vim.diagnostic.config({
-  virtual_text = {
-    prefix = "●", -- or '>>', '', '->', etc.
-    spacing = 2,
-    severity = nil,
-    source = "if_many", -- shows source if multiple sources
-    format = function(diagnostic)
-      return string.format("%s", diagnostic.message)
-    end,
-  },
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = function() end
+-- vim.diagnostic.config({
+--   virtual_text = {
+--     prefix = "●", -- or '>>', '', '->', etc.
+--     spacing = 2,
+--     severity = nil,
+--     source = "if_many", -- shows source if multiple sources
+--     format = function(diagnostic)
+--       return string.format("%s", diagnostic.message)
+--     end,
+--   },
+--   signs = true,
+--   underline = true,
+--   update_in_insert = false,
+--   severity_sort = true,
+-- })
+-- vim.lsp.handlers["textDocument/signatureHelp"] = function() end
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float", close_on_exit = true })
