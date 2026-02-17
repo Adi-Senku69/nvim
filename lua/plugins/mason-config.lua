@@ -17,7 +17,6 @@ return {
         "clangd",
         "cssls",
         "emmet_language_server",
-        "asm_lsp",
       },
       automatic_installation = true,
     })
