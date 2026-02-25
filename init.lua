@@ -10,12 +10,14 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
 vim.lsp.enable("ts-ls")
 vim.lsp.enable("elixirls")
 vim.lsp.enable("yaml-ls")
 vim.lsp.enable("luals")
 vim.lsp.enable("pylsp")
+vim.lsp.enable("pyright")
 vim.lsp.enable("dockerls")
 vim.lsp.enable("docker-compose-ls")
 vim.lsp.enable("cssls_custom")

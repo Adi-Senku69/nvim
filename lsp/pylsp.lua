@@ -1,3 +1,4 @@
+-- Keep pylsp but trim it down to formatting/linting only
 return {
   cmd = { "pylsp" },
   filetypes = { "python" },
@@ -5,35 +6,24 @@ return {
   settings = {
     pylsp = {
       plugins = {
-        flake8 = {
-          enabled = true,
-          ignore = { "W293" },
-        },
-        rope_autoimport = {
-          enabled = false,
-        },
-        -- pycodestyle = {
-        --       enabled = false,
-        --     },
-        Jedi = {
-          enable = true,
-          completion = {
-            brackets = true, -- Enable auto-bracket completions
-            fuzzy = true,
-            inclue_params = true,
-            definition = true,
-          },
-        },
-        -- },
-        -- },
+        -- Disable Jedi entirely
+        jedi_completion = { enabled = false },
+        jedi_definition = { enabled = false },
+        jedi_hover = { enabled = false },
+        jedi_references = { enabled = false },
+        jedi_signature_help = { enabled = false },
+        jedi_symbols = { enabled = false },
+        flake8 = { enabled = false }, -- let ruff handle this
+        pycodestyle = { enabled = false },
+        rope_autoimport = { enabled = false },
         ruff = {
-          enabled = true,                  -- Enable the plugin
-          formatEnabled = true,            -- Enable formatting using ruffs formatter
-          extendSelect = { "I" },          -- Rules that are additionally used by ruff
-          extendIgnore = { "C90" },        -- Rules that are additionally ignored by ruff
-          format = { "I" },                -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
-          severities = { ["D212"] = "I" }, -- Optional table of rules where a custom severity is desired
-          unsafeFixes = false,             -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
+          enabled = true,
+          formatEnabled = true,
+          extendSelect = { "I" },
+          extendIgnore = { "C90" },
+          format = { "I" },
+          severities = { ["D212"] = "I" },
+          unsafeFixes = false,
         },
       },
     },
