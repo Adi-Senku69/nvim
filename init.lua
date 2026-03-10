@@ -24,6 +24,7 @@ vim.lsp.enable("cssls_custom")
 vim.lsp.enable("html_ls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("emmet_ls_custom")
+-- vim.lsp.enable("bash_lsp")
 -- Bootstrap lazy.nvim
 require("config.lazy")
 
